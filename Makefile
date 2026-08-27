@@ -240,9 +240,9 @@ require-home-bin:
 	  if [ ! -d "$(HOME_BIN)" ]; then \
 	    echo "Required directory is missing: $(HOME_BIN)"; \
 	    echo "Create it with:"; \
-	    echo "  mkdir -p \"$(HOME_BIN)\""; \
+	    echo "  mkdir -p \"\$$HOME/bin\""; \
 	    echo "Then add it to your PATH, for example in ~/.zshrc:"; \
-	    echo "  export PATH=\"$(HOME_BIN):\$$PATH\""; \
+	    echo "  export PATH=\"\$$HOME/bin:\$$PATH\""; \
 	    exit 1; \
 	  fi; \
 	  case ":$$PATH:" in \
@@ -251,7 +251,7 @@ require-home-bin:
 	    *) \
 	      echo "Required directory is not on PATH: $(HOME_BIN)"; \
 	      echo "Add it to your PATH, for example in ~/.zshrc:"; \
-	      echo "  export PATH=\"$(HOME_BIN):\$$PATH\""; \
+	      echo "  export PATH=\"\$$HOME/bin:\$$PATH\""; \
 	      exit 1; \
 	      ;; \
 	  esac
