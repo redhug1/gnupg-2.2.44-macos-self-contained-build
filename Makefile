@@ -175,7 +175,7 @@ help:
 	  'make all               # full flow: verify, build, smoke-test, upstream tests, wrapper, timed' \
 	  '' \
 	  'Notes:' \
-	  '  - $$HOME/bin must already exist before running build targets.' \
+	  '  - $$HOME/bin must already exist and be on your PATH before running build targets.' \
 	  '  - The final install prefix must not contain spaces.' \
 	  '  - If the working directory path contains spaces, build targets use a temporary' \
 	  '    symlink under /tmp and remove it afterward.' \
@@ -244,7 +244,17 @@ require-home-bin:
 	    echo "Then add it to your PATH, for example in ~/.zshrc:"; \
 	    echo "  export PATH=\"$(HOME_BIN):\$$PATH\""; \
 	    exit 1; \
-	  fi
+	  fi; \
+	  case ":$$PATH:" in \
+	    *":$(HOME_BIN):"*) \
+	      ;; \
+	    *) \
+	      echo "Required directory is not on PATH: $(HOME_BIN)"; \
+	      echo "Add it to your PATH, for example in ~/.zshrc:"; \
+	      echo "  export PATH=\"$(HOME_BIN):\$$PATH\""; \
+	      exit 1; \
+	      ;; \
+	  esac
 
 doctor:
 	@set -eu; \
