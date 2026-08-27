@@ -15,6 +15,7 @@ SHELL := /bin/sh
 #   $HOME/bin/gpg --version
 #
 #  (on a circa 2019 MacBook Pro, 'make all' takes about 10 minutes to complete and the installed executable files are about 5MB in size)
+#  (on a new M4 Max Arm64, 'make all' takes about 5 minutes to complete and the installed executable files are about 5MB in size)
 #
 # Cleanup:
 #   make clean             # remove local build output and any temp build symlink
