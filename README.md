@@ -57,6 +57,8 @@ $HOME/bin/gpg --version
 
 On a circa 2019 Intel MacBook Pro, `make all` took about 10 minutes to complete, and the installed executable files were about 5 MB in size.
 
+On a new M4 Max Arm64, `make all` takes about 5 minutes to complete and the installed executable files are about 5MB in size.
+
 ## Full Reset And Rebuild
 
 If you want a full rebuild from scratch in the current directory:
