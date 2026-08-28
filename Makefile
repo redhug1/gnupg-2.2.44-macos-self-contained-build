@@ -80,6 +80,7 @@ BUILD_ABS := $(WORKROOT_BUILD_ABS)/$(BUILD_DIR)
 BUILD_ENV = env PATH="$(INSTALL_PREFIX_ABS)/bin:$$PATH" CPPFLAGS="-I$(INSTALL_PREFIX_ABS)/include" LDFLAGS="-L$(INSTALL_PREFIX_ABS)/lib" PKG_CONFIG_PATH="$(INSTALL_PREFIX_ABS)/lib/pkgconfig:$(INSTALL_PREFIX_ABS)/share/pkgconfig"
 COMMON_CONFIGURE_FLAGS = --prefix="$(INSTALL_PREFIX_ABS)" --disable-nls
 MAKE_BUILD_FLAGS = MAKEINFO=true
+CURL_FETCH_FLAGS = -fL --retry 3 --retry-delay 2 --retry-all-errors
 
 GNUPG_ARCHIVE := $(DOWNLOAD_DIR)/$(GNUPG_NAME).tar.bz2
 LIBGPG_ERROR_ARCHIVE := $(DOWNLOAD_DIR)/$(LIBGPG_ERROR_NAME).tar.bz2
@@ -442,28 +443,28 @@ uninstall-prefix:
 	rm -f "$(HOME_BIN)/gpg"
 
 $(GNUPG_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(GNUPG_NAME).tar.bz2" "$(GNUPG_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(GNUPG_NAME).tar.bz2" "$(GNUPG_URL)"
 
 $(LIBGPG_ERROR_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(LIBGPG_ERROR_NAME).tar.bz2" "$(LIBGPG_ERROR_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(LIBGPG_ERROR_NAME).tar.bz2" "$(LIBGPG_ERROR_URL)"
 
 $(LIBGCRYPT_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(LIBGCRYPT_NAME).tar.bz2" "$(LIBGCRYPT_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(LIBGCRYPT_NAME).tar.bz2" "$(LIBGCRYPT_URL)"
 
 $(LIBASSUAN_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(LIBASSUAN_NAME).tar.bz2" "$(LIBASSUAN_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(LIBASSUAN_NAME).tar.bz2" "$(LIBASSUAN_URL)"
 
 $(LIBKSBA_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(LIBKSBA_NAME).tar.bz2" "$(LIBKSBA_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(LIBKSBA_NAME).tar.bz2" "$(LIBKSBA_URL)"
 
 $(NPTH_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(NPTH_NAME).tar.bz2" "$(NPTH_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(NPTH_NAME).tar.bz2" "$(NPTH_URL)"
 
 $(NTBTLS_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(NTBTLS_NAME).tar.bz2" "$(NTBTLS_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(NTBTLS_NAME).tar.bz2" "$(NTBTLS_URL)"
 
 $(PINENTRY_ARCHIVE): | dirs
-	curl -fL --retry 3 --retry-delay 2 -o "$(DOWNLOAD_REAL_ABS)/$(PINENTRY_NAME).tar.bz2" "$(PINENTRY_URL)"
+	curl $(CURL_FETCH_FLAGS) -o "$(DOWNLOAD_REAL_ABS)/$(PINENTRY_NAME).tar.bz2" "$(PINENTRY_URL)"
 
 $(STAMP_DIR)/gnupg-extract: $(GNUPG_ARCHIVE) | dirs
 	rm -rf "$(SRC_REAL_ABS)/$(GNUPG_NAME)" "$(BUILD_REAL_ABS)/$(GNUPG_NAME)"
